@@ -21,6 +21,11 @@
     />
     <!-- html2canvas for invoice download -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Animate.css for animations -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <style>
       * {
         margin: 0;
@@ -35,6 +40,226 @@
         line-height: 1.5;
       }
 
+      /* === ANIMATIONS === */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes shine {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      /* === AD BANNERS === */
+      .ad-top {
+        background: linear-gradient(90deg, #ffd966, #ffb347, #ff8c42);
+        color: #1e3a4e;
+        padding: 0.5rem 0;
+        text-align: center;
+        font-weight: 600;
+        font-size: 0.95rem;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 2px solid #e07c3c;
+        animation: slideInLeft 0.8s ease-out;
+      }
+
+      .ad-top::before {
+        content: "✨";
+        margin-right: 0.5rem;
+        animation: pulse 2s infinite;
+      }
+
+      .ad-top::after {
+        content: "✨";
+        margin-left: 0.5rem;
+        animation: pulse 2s infinite;
+      }
+
+      .ad-top span {
+        display: inline-block;
+        animation: float 3s ease-in-out infinite;
+        background: rgba(255, 255, 255, 0.3);
+        padding: 0.2rem 1rem;
+        border-radius: 50px;
+        margin: 0 0.5rem;
+      }
+
+      .ad-carousel {
+        background: linear-gradient(135deg, #e6f3f9, #c9e9f5);
+        padding: 1rem 5%;
+        margin: 1rem 0;
+        overflow: hidden;
+        position: relative;
+        border-top: 2px solid #0f6e8a;
+        border-bottom: 2px solid #0f6e8a;
+      }
+
+      .carousel-track {
+        display: flex;
+        animation: scroll 20s linear infinite;
+        width: fit-content;
+      }
+
+      .carousel-track:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .carousel-item {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 2rem;
+        white-space: nowrap;
+      }
+
+      .carousel-item i {
+        font-size: 2rem;
+        color: #0f6e8a;
+        margin-right: 0.5rem;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .carousel-item span {
+        font-weight: 600;
+        color: #0a4b5c;
+        font-size: 1.1rem;
+      }
+
+      .carousel-item .badge {
+        background: #ffd966;
+        padding: 0.3rem 1rem;
+        border-radius: 50px;
+        color: #1e3a4e;
+        font-weight: 700;
+        animation: pulse 2s infinite;
+      }
+
+      .ad-side {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(145deg, #0f6e8a, #0a5268);
+        color: white;
+        padding: 1rem;
+        border-radius: 16px 0 0 16px;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-weight: 600;
+        letter-spacing: 2px;
+        z-index: 1000;
+        box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+        animation: slideInRight 0.5s ease-out;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .ad-side:hover {
+        padding-right: 2rem;
+        background: #0a5268;
+      }
+
+      .ad-side i {
+        margin-bottom: 1rem;
+        transform: rotate(90deg);
+        animation: float 2s infinite;
+      }
+
+      .ad-bottom {
+        background: linear-gradient(45deg, #2c3e50, #3498db);
+        color: white;
+        padding: 0.8rem;
+        text-align: center;
+        border-radius: 60px;
+        margin: 1rem 5%;
+        box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        animation: fadeInUp 0.8s ease-out;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ad-bottom::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.3) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(30deg);
+        animation: shine 3s infinite;
+        background-size: 200% auto;
+      }
+
       /* === NAVIGATION BAR === */
       .navbar {
         display: flex;
@@ -45,6 +270,7 @@
         box-shadow: 0 6px 18px rgba(0, 20, 40, 0.04);
         flex-wrap: wrap;
         position: relative;
+        animation: slideInLeft 0.5s ease-out;
       }
 
       .logo {
@@ -55,6 +281,7 @@
         font-weight: 700;
         letter-spacing: -0.5px;
         color: #0a3147;
+        animation: float 3s ease-in-out infinite;
       }
 
       .logo i {
@@ -72,11 +299,28 @@
         text-decoration: none;
         color: #2a4053;
         font-size: 1.05rem;
-        transition: color 0.2s;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #0f6e8a;
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
       }
 
       .nav-links a:hover {
         color: #0f6e8a;
+        transform: translateY(-2px);
       }
 
       .nav-right {
@@ -93,13 +337,15 @@
         font-weight: 600;
         color: #0f6e8a;
         text-decoration: none;
-        transition: 0.2s;
+        transition: all 0.3s ease;
         font-size: 0.95rem;
       }
 
       .nav-right .btn-outline:hover {
         background: #0f6e8a;
         color: white;
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(15, 110, 138, 0.3);
       }
 
       .nav-right .btn-solid {
@@ -109,7 +355,7 @@
         font-weight: 600;
         color: white;
         text-decoration: none;
-        transition: 0.2s;
+        transition: all 0.3s ease;
         font-size: 0.95rem;
         border: 1.5px solid #0f6e8a;
       }
@@ -117,6 +363,8 @@
       .nav-right .btn-solid:hover {
         background: #0a5268;
         border-color: #0a5268;
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(10, 82, 104, 0.3);
       }
 
       .mobile-menu-icon {
@@ -124,6 +372,11 @@
         font-size: 1.6rem;
         color: #1e2b3c;
         cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .mobile-menu-icon:hover {
+        transform: rotate(90deg);
       }
 
       /* Mobile dropdown menu */
@@ -137,6 +390,7 @@
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+        animation: slideInLeft 0.3s ease-out;
       }
 
       .mobile-dropdown a {
@@ -148,6 +402,13 @@
         width: 100%;
         text-align: center;
         border-bottom: 1px solid #eef6f9;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-dropdown a:hover {
+        background: #f0f8fc;
+        color: #0f6e8a;
+        transform: translateX(10px);
       }
 
       .mobile-dropdown a:last-child {
@@ -180,6 +441,7 @@
         align-items: center;
         justify-content: center;
         padding: 2.5rem 1.5rem;
+        animation: fadeInUp 0.8s ease-out;
       }
 
       .hero-content {
@@ -191,6 +453,7 @@
         border-radius: 40px 16px 40px 16px;
         box-shadow: 0 20px 30px -8px rgba(0, 0, 0, 0.2);
         text-align: center;
+        animation: float 5s ease-in-out infinite;
       }
 
       .hero h1 {
@@ -218,6 +481,12 @@
         border: 1px solid #e3ecf0;
         max-width: 600px;
         margin: 0 auto;
+        transition: all 0.3s ease;
+      }
+
+      .tracking-form:hover {
+        transform: scale(1.02);
+        box-shadow: 0 15px 30px rgba(15, 110, 138, 0.15);
       }
 
       .tracking-form i {
@@ -250,12 +519,14 @@
         align-items: center;
         gap: 0.6rem;
         cursor: pointer;
-        transition: 0.2s;
+        transition: all 0.3s ease;
         border: 1px solid #0f6e8a;
       }
 
       .tracking-btn:hover {
         background: #0a5268;
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(10, 82, 104, 0.4);
       }
 
       /* === ERROR / ALERT BANNER === */
@@ -271,6 +542,7 @@
         align-items: center;
         gap: 1rem;
         box-shadow: 0 4px 10px rgba(209, 69, 107, 0.08);
+        animation: pulse 2s infinite;
       }
 
       .error-message i {
@@ -294,14 +566,40 @@
         padding: 1.5rem 1rem;
         border-radius: 32px;
         background: #f8fdfe;
-        transition: 0.2s;
+        transition: all 0.3s ease;
         border: 1px solid #e2f0f5;
+        animation: fadeInUp 0.5s ease-out;
+        animation-fill-mode: both;
+      }
+
+      .feature-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .feature-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .feature-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .feature-card:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 20px 30px rgba(15, 110, 138, 0.15);
+        border-color: #0f6e8a;
       }
 
       .feature-card i {
         font-size: 2.5rem;
         color: #0f6e8a;
         margin-bottom: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover i {
+        transform: scale(1.2) rotate(360deg);
       }
 
       .feature-card h4 {
@@ -320,6 +618,7 @@
       .tracking-result {
         margin: 2.5rem 5%;
         display: none;
+        animation: fadeInUp 0.8s ease-out;
       }
 
       .result-container {
@@ -351,6 +650,12 @@
         display: inline-flex;
         align-items: center;
         gap: 0.6rem;
+        transition: all 0.3s ease;
+      }
+
+      .tracking-id-badge:hover {
+        transform: scale(1.05);
+        background: #d1e7f0;
       }
 
       .delivery-estimate {
@@ -359,6 +664,12 @@
         border-radius: 60px;
         font-weight: 600;
         color: #1e4a5e;
+        transition: all 0.3s ease;
+      }
+
+      .delivery-estimate:hover {
+        transform: scale(1.05);
+        background: #e0edf2;
       }
 
       /* status timeline visual */
@@ -377,6 +688,11 @@
         z-index: 2;
         background: white;
         padding: 0 0.3rem;
+        transition: all 0.3s ease;
+      }
+
+      .status-step:hover {
+        transform: translateY(-5px);
       }
 
       .status-icon {
@@ -392,6 +708,13 @@
         font-size: 1.3rem;
         border: 3px solid white;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .status-step:hover .status-icon {
+        transform: scale(1.1) rotate(360deg);
+        background: #0f6e8a;
+        color: white;
       }
 
       .status-active .status-icon {
@@ -430,6 +753,7 @@
       /* Live map container */
       .map-section {
         margin: 2.5rem 0 2rem;
+        animation: fadeInUp 0.6s ease-out;
       }
 
       #live-map {
@@ -438,6 +762,12 @@
         border-radius: 24px;
         border: 1px solid #cfe1e6;
         z-index: 5;
+        transition: all 0.3s ease;
+      }
+
+      #live-map:hover {
+        transform: scale(1.01);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       }
 
       /* detailed table */
@@ -447,6 +777,7 @@
         margin: 1.8rem 0;
         background: #f9fdfe;
         border-radius: 20px;
+        animation: fadeInUp 0.7s ease-out;
       }
 
       .detail-table th {
@@ -461,6 +792,12 @@
         padding: 0.9rem 0.8rem;
         border-bottom: 1px solid #e0edf2;
         color: #1f4454;
+        transition: all 0.3s ease;
+      }
+
+      .detail-table tr:hover td {
+        background: #e5f3f9;
+        transform: scale(1.01);
       }
 
       .detail-table tr:last-child td {
@@ -476,6 +813,7 @@
         padding: 1.8rem;
         border-radius: 24px;
         margin: 1.5rem 0;
+        animation: fadeInUp 0.8s ease-out;
       }
 
       .info-box h4 {
@@ -490,6 +828,12 @@
         font-weight: 600;
         color: #0c3a48;
         margin-bottom: 0.2rem;
+        transition: all 0.3s ease;
+      }
+
+      .info-box p:hover {
+        transform: translateX(5px);
+        color: #0f6e8a;
       }
 
       .masked {
@@ -499,6 +843,12 @@
         padding: 0.2rem 0.7rem;
         border-radius: 50px;
         display: inline-block;
+        transition: all 0.3s ease;
+      }
+
+      .masked:hover {
+        background: #d1e7f0;
+        transform: scale(1.05);
       }
 
       /* Notifications opt-in */
@@ -512,6 +862,13 @@
         justify-content: space-between;
         margin-top: 1.8rem;
         border: 1px solid #b8d9e2;
+        animation: fadeInUp 0.9s ease-out;
+        transition: all 0.3s ease;
+      }
+
+      .notify-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 15px 30px rgba(15, 110, 138, 0.1);
       }
 
       .notify-card h3 {
@@ -533,6 +890,12 @@
         gap: 0.4rem;
         font-weight: 500;
         color: #1e5667;
+        transition: all 0.3s ease;
+      }
+
+      .notify-options label:hover {
+        transform: scale(1.05);
+        color: #0f6e8a;
       }
 
       .notify-options input[type="checkbox"] {
@@ -549,11 +912,13 @@
         border-radius: 40px;
         font-weight: 600;
         cursor: pointer;
-        transition: 0.2s;
+        transition: all 0.3s ease;
       }
 
       .notify-btn:hover {
         background: #0a5268;
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 0 5px 15px rgba(15, 110, 138, 0.3);
       }
 
       /* Invoice section */
@@ -563,6 +928,7 @@
         border-radius: 28px;
         padding: 1.8rem;
         border: 1px solid #bee0e9;
+        animation: fadeInUp 1s ease-out;
       }
 
       .invoice-header {
@@ -591,12 +957,14 @@
         align-items: center;
         gap: 0.6rem;
         cursor: pointer;
-        transition: 0.2s;
+        transition: all 0.3s ease;
         font-size: 0.95rem;
       }
 
       .download-btn:hover {
         background: #137a46;
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 0 5px 15px rgba(27, 158, 92, 0.3);
       }
 
       .invoice-card {
@@ -608,6 +976,12 @@
         width: 100%;
         max-width: 100%;
         overflow-x: auto;
+        transition: all 0.3s ease;
+      }
+
+      .invoice-card:hover {
+        transform: scale(1.01);
+        box-shadow: 0 20px 40px rgba(15, 110, 138, 0.1);
       }
 
       .invoice-logo {
@@ -622,6 +996,7 @@
       .invoice-logo i {
         font-size: 2.5rem;
         color: #0f6e8a;
+        animation: float 3s ease-in-out infinite;
       }
 
       .invoice-logo strong {
@@ -677,6 +1052,7 @@
         color: #c2dae2;
         padding: 2.5rem 5% 1.5rem;
         margin-top: 3rem;
+        animation: fadeInUp 0.8s ease-out;
       }
 
       .footer-content {
@@ -693,6 +1069,12 @@
         text-decoration: none;
         margin: 0 1rem 0 0;
         font-size: 0.95rem;
+        transition: all 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        transform: translateY(-2px);
       }
 
       .footer-social i {
@@ -700,6 +1082,12 @@
         margin: 0 0.6rem;
         color: #aacbd7;
         cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .footer-social i:hover {
+        color: white;
+        transform: scale(1.2) rotate(360deg);
       }
 
       .footer-copy {
@@ -739,6 +1127,9 @@
         .hero h1 {
           font-size: 2rem;
         }
+        .ad-side {
+          display: none;
+        }
       }
     </style>
     <!-- favicon (inline svg) -->
@@ -749,6 +1140,52 @@
     />
   </head>
   <body>
+    <!-- ===== TOP AD BANNER ===== -->
+    <div class="ad-top">
+      <i class="fas fa-gem"></i>
+      <span>🚚 FREE SHIPPING ON ORDERS OVER $100</span>
+      <i class="fas fa-gem"></i>
+      | Use code: <strong>SWIFT2026</strong> |
+      <i class="fas fa-clock"></i> Limited time offer!
+    </div>
+
+    <!-- ===== CAROUSEL ADS ===== -->
+    <div class="ad-carousel">
+      <div class="carousel-track">
+        <!-- First set -->
+        <div class="carousel-item">
+          <i class="fas fa-tags"></i>
+          <span>20% OFF First Shipment</span>
+          <span class="badge">NEW</span>
+          <i class="fas fa-plane"></i>
+          <span>Express Delivery - $9.99</span>
+          <i class="fas fa-shield-alt"></i>
+          <span>Insurance Included</span>
+          <i class="fas fa-gift"></i>
+          <span>Free Tracking</span>
+        </div>
+        <!-- Duplicate for seamless loop -->
+        <div class="carousel-item">
+          <i class="fas fa-tags"></i>
+          <span>20% OFF First Shipment</span>
+          <span class="badge">NEW</span>
+          <i class="fas fa-plane"></i>
+          <span>Express Delivery - $9.99</span>
+          <i class="fas fa-shield-alt"></i>
+          <span>Insurance Included</span>
+          <i class="fas fa-gift"></i>
+          <span>Free Tracking</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SIDE AD ===== -->
+    <div class="ad-side">
+      <i class="fas fa-tag"></i>
+      <span>SAVE 20%</span>
+      <i class="fas fa-arrow-right"></i>
+    </div>
+
     <!-- ===== NAVIGATION BAR ===== -->
     <nav class="navbar">
       <div class="logo">
@@ -810,10 +1247,13 @@
     <!-- dynamic error placeholder (shows when wrong ID) -->
     <div id="errorContainer" style="display: none" class="error-message">
       <i class="fas fa-exclamation-triangle"></i>
-      <span id="">Tracking Not Available</span>
-      <p>
-        Tracking is not available for this item. This may be because the tracking number is invalid; SwiftShip has not yet received payment; SwiftShip has not yet received the item; the item does not include tracking; or other reasons.
-      </p>
+      <span id="errorText">Incorrect tracking ID.</span>
+    </div>
+
+    <!-- ===== BOTTOM AD ===== -->
+    <div class="ad-bottom">
+      <i class="fas fa-mobile-alt"></i> Download our app for real-time push
+      notifications! <strong>App Store</strong> | <strong>Google Play</strong>
     </div>
 
     <!-- ===== FEATURE GRID: global network, fast transit, live tracking, 24/7 support ===== -->
@@ -954,6 +1394,21 @@
               <td>Canberra, ACT</td>
               <td>In transit to Adelaide</td>
             </tr>
+            <tr>
+              <td>2026-02-18 10:30am</td>
+              <td>Adelaide, SA</td>
+              <td>Arrived at Adelaide Sorting Facility</td>
+            </tr>
+            <tr>
+              <td>2026-02-19 08:45am</td>
+              <td>Adelaide, SA</td>
+              <td>In transit to Hindmarsh SA</td>
+            </tr>
+            <tr>
+              <td>2026-02-19 11:20am</td>
+              <td>Arrived at Hindmarsh SA</td>
+              <td>In transit to Hindmarsh SA Sorting Facility</td>
+            </tr>
           </tbody>
         </table>
 
@@ -1007,9 +1462,8 @@
                 <p>
                   <strong>FROM / SENDER</strong><br />Anderson Bryon<br />17
                   Hobson Heights Rd<br />Lucas Heights, Auckland 0632<br />NZ ·
-                  +64 9 876 5432
+                  +1 (314) 649-3529
                 </p>
-                <p><strong>ACCOUNT #</strong> SWFT-7842-NZ</p>
               </div>
               <div class="invoice-box">
                 <p>
@@ -1022,6 +1476,7 @@
               <div class="invoice-box">
                 <p><strong>SHIPMENT DETAILS</strong></p>
                 <p><strong>Tracking ID:</strong> PKG-9047X-LM82-VA</p>
+
                 <p><strong>Weight:</strong> 35 kg (77.2 lbs)</p>
                 <p><strong>Dimensions:</strong> 45×35×30 cm</p>
                 <p><strong>Service:</strong> International Priority</p>
@@ -1030,13 +1485,11 @@
             </div>
             <div class="invoice-box">
               <p><strong>Invoice #:</strong> INV-AUS-9047-2026</p>
-              <p><strong>PO#:</strong> PO-8872-MEL</p>
+              <p><strong>PO #:</strong> PO-8872-MEL</p>
               <p><strong>Carrier Reference:</strong> CR-NZAU-15973</p>
               <p><strong>Customs Info:</strong> CIP 0202/2026-AKL</p>
             </div>
-            <div class="invoice-footer-box">
-              <!-- <span>Invoice date: 2026-02-13</span> -->
-            </div>
+            <div class="invoice-footer-box"></div>
             <p style="margin-top: 1rem; font-size: 0.75rem; color: #547a89">
               Thank you for shipping with SwiftShip · Tracking available 24/7
             </p>
